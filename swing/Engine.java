@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
-import com.jse.swing.Grade;
-
 import com.jse.swing.MemberBean;
+import com.sun.javafx.geom.AreaOp.AddOp;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 import jdk.nashorn.internal.runtime.regexp.joni.ScanEnvironment;
 
@@ -14,12 +15,13 @@ public class Engine {
 
 	public static void main(String[] args) {
 
-		Scanner scan = new Scanner(System.in);
-		Grade grade = null;
-		MemberBean member = new MemberBean();
-
-		Grade[] grades = new Grade[3];
-		MemberBean[] members = new MemberBean[3];
+		Scanner scan = new Scanner(System.in); 
+		GradeService gradeService =new GradeService();
+		
+		MemberService memberService = new MemberService();
+		
+		
+		
 
 		while (true) {
 			System.out.println("숫자를 입력하자");
@@ -33,20 +35,23 @@ public class Engine {
 			case 1:
 				System.out.println("성적입력 시작");
 
-				for (int i = 0; i < 2; i++) {
-					grades[i] = Input(scan);
+				for (int i = 0; i < 3; i++) {
+					System.out.println("이름, 국어, 영어, 수학, 입력");	
+					gradeService.add(new GradeBean(scan.next(),scan.nextDouble(),scan.nextDouble(),scan.nextDouble()));
+					
 				}
-
+				
+				
 				break;
 
 			case 2:
 				System.out.println("성적 출력");
+				GradeBean[] grades = gradeService.getGrades();
 
 				for (int i = 0; i < grades.length; i++) {
-					grade = grades[i];
-					System.out.println("이름 : " + grade.getName() + " 국어 :" + grade.korean + " 영어 : " + grade.english
-							+ " 수학 :" + grade.math + " 합계 :" + grade.getSum() + " 평균 :" + grade.average() + " 학점 : "
-							+ grade.averageResult2());
+					System.out.println("이름 : " + grades[i].getName() + " 국어 :" + grades[i].korean + " 영어 : " + grades[i].english
+							+ " 수학 :" + grades[i].math + " 합계 :" + grades[i].getSum() + " 평균 :" + grades[i].average() + " 학점 : "
+							+ grades[i].averageResult2());
 				}
 
 				break;
@@ -57,42 +62,33 @@ public class Engine {
 				break;
 
 			case 4:
-
-				for (int i = 0; i < members.length; i++) {
-					members[i] = meberPrivacy(scan);
+				
+				for (int i = 0; i < 3; i++) {
+					System.out.println("아이디, 비밀번호, 이름, 나이 를 입력하세요.");
+					memberService.add(new MemberBean(scan.next(), scan.next(),scan.next(), scan.nextInt()));
 				}
+				
 
 				break;
 
 			case 5:
-				for (int i = 0; i < members.length; i++) {
-					System.out.println("나이 : " + members[i].getUserid() + " 비밀번호: " + members[i].getName() + " 이름: "
-							+ members[i].getPassward() + " 나이: " + members[i].getAge());
+				MemberBean[] members = memberService.getMembers();
+				for (int i = 0; i < 3; i++) {
+					System.out.println(members[i].getUserid() + members[i].getPassward()+members[i].getName()+members[i].getAge());
 				}
+
 
 				break;
 			case 6:
 				int[] rank = new int[3];
 
-				for (int i = 0; i < members.length; i++) {
 
-					if (rank[0] < members[i].getAge()) {
-
-						rank[0] = members[i].getAge();
-
-					} else if (rank[1] < members[i].getAge()) {
-
-						rank[1] = members[i].getAge();
-
-					} else {
-
-						rank[2 + 1] = members[i].getAge();
-					}
-				}
+	
 
 				System.out.println("1위 :" + rank[0] + " 2위  :" + rank[1] + " 3위 :" + rank[2]);
 
 				break;
+				
 
 			case 7:
 				
@@ -107,25 +103,28 @@ public class Engine {
 
 	}
 
-	static Grade Input(Scanner scanner) {
+	static GradeBean Input(Scanner scanner) {
 		System.out.println("이름, 국어, 영어, 수학, 입력");
 
-		return new Grade(scanner.next(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
+		return new GradeBean(scanner.next(),
+				scanner.nextDouble(), 
+				scanner.nextDouble(),
+				scanner.nextDouble());
 	}
 
-	static MemberBean meberPrivacy(Scanner scanner) {
-		MemberBean member = new MemberBean();
-		System.out.println("아이디 : ");
-		member.setUserid(scanner.next());
-		System.out.println("비밀번호 : ");
-		member.setPassward(scanner.next());
-		System.out.println("이름 : ");
-		member.setName(scanner.next());
-		System.out.println("나이 :");
-		member.setAge(scanner.nextInt());
-
-		return member;
-
-	}
+//	static MemberBean meberPrivacy(Scanner scanner) {
+//		MemberBean member = new MemberBean();
+//		System.out.println("아이디 : ");
+//		member.setUserid(scanner.next());
+//		System.out.println("비밀번호 : ");
+//		member.setPassward(scanner.next());
+//		System.out.println("이름 : ");
+//		member.setName(scanner.next());
+//		System.out.println("나이 :");
+//		member.setAge(scanner.nextInt());
+//
+//		return member;
+//
+//	}
 
 }

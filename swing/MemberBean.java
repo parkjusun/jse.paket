@@ -6,6 +6,13 @@ public class MemberBean {
 	private String name;
 	private int age;
 	
+	public MemberBean(String userid,String passward,String name,int age) {
+		this.userid = userid;
+		this.passward = passward;
+		this.name = name;
+		this.age = age;
+	}
+	
 	// id
 	public void setUserid(String userid) {
 		this.userid = userid;
@@ -42,9 +49,5 @@ public class MemberBean {
 	}
 	
 	
-	public void memberPrivacy() {
-		
-		
-	}
 
 }
