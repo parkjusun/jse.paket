@@ -13,12 +13,29 @@ package com.jse.swing;
  * 50점 미만이면 F 학점입니다라고 출력되게 해주세요
  */
 public class Grade {
+	public String name;
 	public double korean;
 	public double english;
 	public double math;
 	public double sum;
 	double average;
+	
+	public Grade(String name, double korean, double english, double math) {
+		this.name = name;
+		this.korean = korean;
+		this.english = english;
+		this.math = math;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	
 	// 합계
 	public void setSum(double korean, double english, double math) {
 		this.korean = korean;
@@ -59,7 +76,7 @@ public class Grade {
 
 	public String averageResult2() {
 		String result = null;
-		average = average();
+		
 
 		switch ((int) (average / 10)) {
 		case 10: result = "A"; break;
