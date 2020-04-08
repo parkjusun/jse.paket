@@ -29,6 +29,13 @@ public class Main {
 				}
 
 				break;
+				
+			case 3:
+				for (int i = 0; i < 3; i++) {
+					System.out.println("폰넘버를 입력하세요.");
+				}
+				
+				break;
 
 			default:
 				break;

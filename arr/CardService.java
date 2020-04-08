@@ -21,6 +21,8 @@ public class CardService {
 	public void add(CardBean card) {
 		cards[i]=card;
 		
+		i++;
+		
 		
 		
 	}
