@@ -47,6 +47,11 @@ public class MemberBean {
 	public int getAge() {
 		return age;
 	}
+
+	@Override
+	public String toString() {
+		return "MemberBean [userid=" + userid + ", passward=" + passward + ", name=" + name + ", age=" + age + "]";
+	}
 	
 	
 
