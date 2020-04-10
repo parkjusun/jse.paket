@@ -1,6 +1,6 @@
 package com.jse.grade;
 
-import com.jse.swing.MemberBean;
+import com.jse.member.MemberBean;
 
 public class Group {
 	private MemberBean[] members;

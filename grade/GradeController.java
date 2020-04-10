@@ -5,12 +5,12 @@ import java.util.Scanner;
 import javax.print.attribute.standard.Severity;
 import javax.swing.JOptionPane;
 
+import com.jse.member.MemberBean;
+import com.jse.member.MemberServiceImp;
 import com.jse.utill.Constants;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
-import com.jse.swing.MemberBean;
-import com.jse.swing.MemberService;
 import com.sun.javafx.geom.AreaOp.AddOp;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.sun.xml.internal.ws.api.ha.StickyFeature;
@@ -23,7 +23,7 @@ public class GradeController {
 
 		GradeService gradeService = new GradeServiceImpl();
 
-		MemberService memberService = new MemberService();
+		MemberServiceImp memberService = new MemberServiceImp();
 		Grade grade = null;
 
 		while (true) {
